@@ -34,7 +34,8 @@ public class Board {
                 if (shortRows && (n <= overlap || n >= x_size - overlap-1)) {
                     row.add(null);
                 }else {
-                    row.add(new BoardTile(n, i));
+                    var tile = new BoardTile(n, i);
+                    row.add(tile);
                 }
             }
             board.add(row);
@@ -120,7 +121,7 @@ public class Board {
     public boolean isWon() {
         if (fullTiles.size() == 1){
             var finalTile = fullTiles.get(0);
-            if (finalTile.x == boardSize+1 && finalTile.y == boardSize+1){
+            if (finalTile.x == boardSize && finalTile.y == boardSize){
                 return true;
             }
         }
@@ -151,7 +152,7 @@ public class Board {
         step_2.setFull(true);
 
         fullTiles.remove(tile);
-        fullTiles.remove(tile);
+        fullTiles.remove(step_1);
         fullTiles.add(step_2);
     }
 }
